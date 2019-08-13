@@ -11,7 +11,7 @@ const themeRouter = express.Router()
 themeRouter.get('/', (req, res) => {
   themeApi.getAllThemes()
     .then(themes => {
-      res.send(themes)
+      res.json(themes)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -20,7 +20,7 @@ themeRouter.get('/', (req, res) => {
 themeRouter.get('/:themeId', (req, res) => {
   themeApi.getSingleTheme(req.params.themeId)
     .then(theme => {
-      res.send(theme)
+      res.json(theme)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -29,7 +29,7 @@ themeRouter.get('/:themeId', (req, res) => {
 themeRouter.post('/', (req, res) => {
   themeApi.createTheme(req.body)
     .then(newTheme => {
-      res.send(newTheme)
+      res.json(newTheme)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -38,7 +38,7 @@ themeRouter.post('/', (req, res) => {
 themeRouter.put('/:themeId', (req, res) => {
   themeApi.updateTheme(req.params.themeId,req.body)
     .then(updatedTheme => {
-      res.send(updatedTheme)
+      res.json(updatedTheme)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -47,7 +47,7 @@ themeRouter.put('/:themeId', (req, res) => {
 themeRouter.delete('/:themeId', (req, res) => {
   themeApi.deleteTheme(req.params.themeId)
     .then(deletedTheme => {
-      res.send(deletedTheme)
+      res.json(deletedTheme)
     })
     .catch(err => console.log('Error :' + err))
 })

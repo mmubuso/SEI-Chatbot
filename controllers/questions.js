@@ -11,7 +11,7 @@ const questionRouter = express.Router()
 questionRouter.get('/', (req, res) => {
   questionApi.getAllQuestions()
     .then(questions => {
-      res.send(questions)
+      res.json(questions)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -20,7 +20,7 @@ questionRouter.get('/', (req, res) => {
 questionRouter.get('/:questionId', (req, res) => {
   questionApi.getSingleQuestion(req.params.questionId)
     .then(question => {
-      res.send(question)
+      res.json(question)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -29,7 +29,7 @@ questionRouter.get('/:questionId', (req, res) => {
 questionRouter.post('/', (req, res) => {
   questionApi.createQuestion(req.body)
     .then(newQuestion => {
-      res.send(newQuestion)
+      res.json(newQuestion)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -38,7 +38,7 @@ questionRouter.post('/', (req, res) => {
 questionRouter.put('/:questionId', (req, res) => {
   questionApi.updateQuestion(req.params.questionId,req.body)
     .then(updatedQuestion => {
-      res.send(updatedQuestion)
+      res.json(updatedQuestion)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -47,7 +47,7 @@ questionRouter.put('/:questionId', (req, res) => {
 questionRouter.delete('/:questionId', (req, res) => {
   questionApi.deleteQuestion(req.params.questionId)
     .then(deletedQuestion => {
-      res.send(deletedQuestion)
+      res.json(deletedQuestion)
     })
     .catch(err => console.log('Error :' + err))
 })

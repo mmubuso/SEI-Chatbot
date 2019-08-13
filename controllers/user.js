@@ -11,7 +11,7 @@ const userRouter = express.Router()
 userRouter.get('/', (req, res) => {
   userApi.getAllUsers()
     .then(users => {
-      res.send(users)
+      res.json(users)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -20,7 +20,7 @@ userRouter.get('/', (req, res) => {
 userRouter.get('/:userId', (req, res) => {
   userApi.getSingleUser(req.params.userId)
     .then(user => {
-      res.send(user)
+      res.json(user)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -29,7 +29,7 @@ userRouter.get('/:userId', (req, res) => {
 userRouter.post('/', (req, res) => {
   userApi.createUser(req.body)
     .then(newUser => {
-      res.send(newUser)
+      res.json(newUser)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -38,7 +38,7 @@ userRouter.post('/', (req, res) => {
 userRouter.put('/:userId', (req, res) => {
   userApi.updateUser(req.params.userId,req.body)
     .then(updatedUser => {
-      res.send(updatedUser)
+      res.json(updatedUser)
     })
     .catch(err => console.log('Error :' + err))
 })
@@ -47,7 +47,7 @@ userRouter.put('/:userId', (req, res) => {
 userRouter.delete('/:userId', (req, res) => {
   userApi.deleteUser(req.params.userId)
     .then(deletedUser => {
-      res.send(deletedUser)
+      res.json(deletedUser)
     })
     .catch(err => console.log('Error :' + err))
 })
