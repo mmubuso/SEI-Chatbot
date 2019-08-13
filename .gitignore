@@ -4,7 +4,7 @@
 ### Ignore readme's
 *readme.md
 *build/
-
+*templates.js
 ### Node ###
 # Logs
 logs

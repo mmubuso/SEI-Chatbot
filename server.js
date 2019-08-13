@@ -5,6 +5,7 @@ const app = express()
 
 const { userRouter } = require('./controllers/user.js')
 const { questionRouter } = require('./controllers/questions.js')
+const { themeRouter } = require('./controllers/themes.js')
 
 
 // parse json files
@@ -18,6 +19,8 @@ app.use(express.static(`${__dirname}/client/build`))
 // Create route paths
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/questions', questionRouter)
+app.use('/api/v1/themes', themeRouter)
+
 
 
 // render index.html file
