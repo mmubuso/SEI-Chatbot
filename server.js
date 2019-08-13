@@ -13,7 +13,8 @@ app.use(express.json())
 // react client build folder
 app.use(express.static(`${__dirname}/client/build`))
 
-app.use('/api/helloworld', templateRouter)
+// Create route paths
+app.use('/api/v1/user', userRouter)
 
 // render index.html file
 app.get('/*', (req, res) => {
