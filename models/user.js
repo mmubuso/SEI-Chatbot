@@ -12,7 +12,7 @@ const UserModelSchema = new mongoose.Schema({
 })
 
 // Create a collection 
-const UserCollection = mongoose.model('Sample', UserModelSchema)
+const UserCollection = mongoose.model('User', UserModelSchema)
 
 // Takes no inputs
 // Returns all users

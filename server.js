@@ -4,6 +4,8 @@ const app = express()
 
 
 const { userRouter } = require('./controllers/user.js')
+const { questionRouter } = require('./controllers/questions.js')
+
 
 // parse json files
 app.use(express.urlencoded({extended: true}))
@@ -14,7 +16,9 @@ app.use(express.json())
 app.use(express.static(`${__dirname}/client/build`))
 
 // Create route paths
-app.use('/api/v1/user', userRouter)
+app.use('/api/v1/users', userRouter)
+app.use('/api/v1/questions', questionRouter)
+
 
 // render index.html file
 app.get('/*', (req, res) => {
