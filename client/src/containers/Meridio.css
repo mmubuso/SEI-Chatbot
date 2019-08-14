@@ -3,5 +3,16 @@
 }
 
 .Meridio .jumbotron{
-    height: 65vh;
+    height: 70vh;
 }
+
+/* Responsive Css  */
+@media (max-width: 768px) { 
+    .Meridio {
+        height: 35vh;
+    }
+    
+    .Meridio .jumbotron{
+        height: 30vh;
+    }
+ }

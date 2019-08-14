@@ -3,5 +3,17 @@
 }
 
 .Media .jumbotron{
-    height: 65vh;
+   height: 70vh;
 }
+
+/* Responsive Css  */
+@media (max-width: 768px) { 
+    .Media {
+        height: 51vh;
+    }
+    .Media .jumbotron{
+        height: 50vh;
+    }
+ }
+
+ 
