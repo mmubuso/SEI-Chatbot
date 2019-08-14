@@ -5,9 +5,9 @@ import { Jumbotron } from 'reactstrap';
 export default class Media extends Component {
     render() {
         return (
-            <div className='col-lg-8 col-sm-12 Media'>
+            <div className='col-lg-7 col-sm-12 Media'>
                 <Jumbotron>
-                    
+
                 </Jumbotron>
             </div>
         )

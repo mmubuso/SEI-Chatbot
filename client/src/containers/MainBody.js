@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from 'react';
+import axios from 'axios';
 import Meridio from './Meridio';
-import Media from './Media'
-import { Container } from 'reactstrap'
+import Media from './Media';
+import { Container } from 'reactstrap';
+import './MainBody.css';
+
 export default class MainBody extends Component {
 
     // Create
@@ -27,7 +29,7 @@ export default class MainBody extends Component {
 
         return (
             <Container>
-                <div className='row' >
+                <div className='row align-items-center MainBody' >
                     <Media content={content} />
                     <Meridio />
                 </div>

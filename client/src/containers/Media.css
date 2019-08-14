@@ -1,4 +1,7 @@
 .Media {
-    background: black;
-    height: 85vh;
+    height: 75vh;
+}
+
+.Media .jumbotron{
+    height: 65vh;
 }
