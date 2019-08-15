@@ -41,7 +41,7 @@ export default class MainBody extends Component {
     componentDidMount() {
         this.getAllSubject()
         // For testing purposes
-        // this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6","questions")
+        this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6","questions")
     }
 
     render() {
