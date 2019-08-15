@@ -1,15 +1,22 @@
 .Meridio {
     height: 75vh;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .Meridio .jumbotron{
     height: 70vh;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 5%;
 }
 
 /* Responsive Css  */
 @media (max-width: 768px) { 
     .Meridio {
         height: 35vh;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
     
     .Meridio .jumbotron{
