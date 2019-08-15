@@ -1,9 +1,47 @@
 import React, { Component } from 'react'
 import { Jumbotron } from 'reactstrap';
 import './Meridio.css'
+import axios from'axios'
 
 export default class Meridio extends Component {
+
+    state = {
+        entities: {
+            intent: {},
+            
+        },
+        userInput: '',
+        meridioFlag: false,
+    }
+
+    //Send userinput to wit api
+    //Input
+    // userInput - String of users question
+    callWitApi = async (userInput) => {
+        userInput = userInput.replace(/[ ]/g,'%20')
+        let response = await axios({
+            method: 'GET',
+            url:`https://api.wit.ai/message?v=20190815&q=${userInput}`,
+            headers: {
+                Authorization : `Bearer `,
+            }
+        })
+        this.setState({entities: response.data.entities})
+    }
+
+   
+
+
+    componentDidMount(){
+        //Use to test api call
+        // this.callWitApi('What will you open the store')
+    }
     render() {
+
+        //destructure state
+        let { userInput } = this.state
+
+
         return (
             <div className='col-lg-5 col-sm-12 Meridio'>
                 <Jumbotron>
