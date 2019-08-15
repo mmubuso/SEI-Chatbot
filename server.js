@@ -3,9 +3,9 @@ const express = require('express')
 const app = express()
 
 
-const { userRouter } = require('./controllers/user.js')
+const { subjectRouter } = require('./controllers/subject.js')
 const { questionRouter } = require('./controllers/questions.js')
-const { themeRouter } = require('./controllers/themes.js')
+const { resourceRouter } = require('./controllers/resources.js')
 
 
 // parse json files
@@ -17,9 +17,9 @@ app.use(express.json())
 app.use(express.static(`${__dirname}/client/build`))
 
 // Create route paths
-app.use('/api/v1/users', userRouter)
-app.use('/api/v1/questions', questionRouter)
-app.use('/api/v1/themes', themeRouter)
+app.use('/api/v1/subjects', subjectRouter)
+app.use('/api/v1/subjects/:subjectId/questions', questionRouter)
+app.use('/api/v1/subjects/:subjectId/resources', resourceRouter)
 
 
 
