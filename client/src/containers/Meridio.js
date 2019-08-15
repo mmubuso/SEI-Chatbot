@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Jumbotron } from 'reactstrap';
 import './Meridio.css'
-import axios from'axios'
+import axios from 'axios'
 
 export default class Meridio extends Component {
 
@@ -9,21 +9,22 @@ export default class Meridio extends Component {
         entities: {},
         userInput: '',
         meridioFlag: false,
+        messages: []
     }
 
     //Send userinput to wit api
     //Input
     // userInput - String of users question
     callWitApi = async (userInput) => {
-        userInput = userInput.replace(/[ ]/g,'%20')
+        userInput = userInput.replace(/[ ]/g, '%20')
         let response = await axios({
             method: 'GET',
-            url:`https://api.wit.ai/message?v=20190815&q=${userInput}`,
+            url: `https://api.wit.ai/message?v=20190815&q=${userInput}`,
             headers: {
-                Authorization : `Bearer `,
+                Authorization: `Bearer `,
             }
         })
-        this.setState({entities: response.data.entities})
+        this.setState({ entities: response.data.entities })
     }
 
     // Validate to make sure entities has intent
@@ -36,10 +37,11 @@ export default class Meridio extends Component {
         return this.state.entities.topic ? true : false
     }
 
+
     // Turn on/off calls to wit api
     toggleMeridio = () => {
         this.setState((state) => {
-            return {meridioFlag : !state.meridioFlag}
+            return { meridioFlag: !state.meridioFlag }
         })
     }
 
@@ -49,27 +51,38 @@ export default class Meridio extends Component {
     handleUserInput = (event) => {
         let newInput = this.state.userInput
         newInput = event.target.value
-        this.setState({userInput : newInput})
+        this.setState({ userInput: newInput })
     }
 
 
-    componentDidMount(){
+
+    componentDidMount() {
         //Use to test api call
         // this.callWitApi('What will you open the store')
-        console.log(this.valdateWitIntent())
-        console.log(this.valdateWitTopic())
+        //Ask user to select subject
     }
     render() {
 
         //destructure state
-        let { userInput } = this.state
+        let { userInput, entities } = this.state
+
+        //destructure props
+        let { filterMethod, allInformation, subjects, singleObjectInfo } = this.props
+
+        let subjectButtons = subjects.map(subject => {
+            return (
+                <button onClick={() => singleObjectInfo(subject._id)}>
+                    {subject.name}
+                </button>
+            )
+        })
 
 
         return (
             <div className='col-lg-5 col-sm-12 Meridio'>
                 <Jumbotron>
-
-                    <input type='text' value={userInput} onChange={this.handleUserInput}/>
+                    {subjectButtons}
+                    <input type='text' value={userInput} onChange={this.handleUserInput} />
                 </Jumbotron>
             </div>
         )
