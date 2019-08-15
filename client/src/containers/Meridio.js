@@ -29,7 +29,17 @@ export default class Meridio extends Component {
         this.setState({entities: response.data.entities})
     }
 
+    // Validate to make sure input has intent
+
+    toggleMeridio = () => {
+        this.setState((state) => {
+            return {meridioFlag : !state.meridioFlag}
+        })
+    }
+
     //Captures user input
+    //Input
+    // event - event object from user input
     handleUserInput = (event) => {
         let newInput = this.state.userInput
         newInput = event.target.value
