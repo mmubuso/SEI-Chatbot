@@ -9,29 +9,34 @@ export default class MainBody extends Component {
 
     // Create
     state = {
-        content: [],
+        subjects: [],
         isMeridioActive: false,
+        information: [],
         subject: null
     }
 
-    getContent = async (str) => {
-        let response = await axios.get(`/api/v1/questions`)
-        await this.setState({ content: response.data })
+    // updates state with all subjects in database
+    getAllSubject = async () => {
+        let response = await axios.get('api/v1/subjects')
+        await this.setState({subjects: response.data})
     }
+   
+
+
 
     componentDidMount() {
-        this.getContent()
+        this.getAllSubject()
     }
 
     render() {
         //destructure state
-        let { content } = this.state
+        let { subjects } = this.state
 
         return (
             <Container>
                 <div className='row align-items-center MainBody' >
-                    <Media content={content} />
-                    <Meridio />
+                    <Media />
+                    <Meridio subjects={subjects}/>
                 </div>
             </Container>
         )
