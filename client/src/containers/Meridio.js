@@ -3,6 +3,7 @@ import { Jumbotron } from 'reactstrap';
 import './Meridio.css'
 import axios from 'axios'
 import Messages from '../components/Messages';
+import Subject from '../components/Subject';
 
 export default class Meridio extends Component {
 
@@ -92,7 +93,10 @@ export default class Meridio extends Component {
                     <Messages
                         messages={messages}
                     />
-                    <
+                    <Subject 
+                        subjects={subjects}
+                        subjectMethod={singleObjectInfo}
+                    />
                     <form onSubmit={(evt) => this.handleOnSubmit(evt)}>
                         <input type='text' value={userInput} onChange={this.handleUserInput} />
                         <input type='submit' onSubmit={(evt) => this.handleOnSubmit(evt)}/>
