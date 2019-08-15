@@ -5,11 +5,11 @@ const express = require('express')
 const questionApi = require('../models/questions.js')
 
 // create a router that will handle these requests
-const questionRouter = express.Router()
+const questionRouter = express.Router({mergeParams:true})
 
 // Get all questions
 questionRouter.get('/', (req, res) => {
-  questionApi.getAllQuestions()
+  questionApi.getAllQuestions(req.params.subjectId)
     .then(questions => {
       res.json(questions)
     })
@@ -27,7 +27,8 @@ questionRouter.get('/:questionId', (req, res) => {
 
 // Create one specific question account
 questionRouter.post('/', (req, res) => {
-  questionApi.createQuestion(req.body)
+  console.log(req.body.topic + " " + req.params.subjectId)
+  questionApi.createQuestion(req.body,req.params.subjectId)
     .then(newQuestion => {
       res.json(newQuestion)
     })
@@ -39,6 +40,15 @@ questionRouter.put('/:questionId', (req, res) => {
   questionApi.updateQuestion(req.params.questionId,req.body)
     .then(updatedQuestion => {
       res.json(updatedQuestion)
+    })
+    .catch(err => console.log('Error :' + err))
+})
+
+// Delete a question account
+questionRouter.delete('/', (req, res) => {
+  questionApi.deleteAllQuestions()
+    .then(deletedQuestions => {
+      res.json(deletedQuestions)
     })
     .catch(err => console.log('Error :' + err))
 })
