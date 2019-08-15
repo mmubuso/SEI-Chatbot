@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Jumbotron } from 'reactstrap';
 import './Meridio.css'
 import axios from 'axios'
+import Messages from '../components/Messages';
 
 export default class Meridio extends Component {
 
@@ -54,7 +55,23 @@ export default class Meridio extends Component {
         this.setState({ userInput: newInput })
     }
 
+    //When user submits a phrase
+    handleOnSubmit = (event) => {
+        event.preventDefault()
+        this.pushUserInputToMessages()
+    }
 
+    //Push user message to list of messages
+    pushUserInputToMessages = () => {
+        let input = this.state.userInput
+        let newMessage = [...this.state.messages]
+        newMessage.push(input)
+        this.setState(
+            { 
+                messages: newMessage,
+                userInput: ''
+        })
+    }
 
     componentDidMount() {
         //Use to test api call
@@ -72,8 +89,14 @@ export default class Meridio extends Component {
         return (
             <div className='col-md-5 col-sm-12 Meridio'>
                 <Jumbotron>
-                    
-                    <input type='text' value={userInput} onChange={this.handleUserInput} />
+                    <Messages
+                        messages={messages}
+                    />
+                    <
+                    <form onSubmit={(evt) => this.handleOnSubmit(evt)}>
+                        <input type='text' value={userInput} onChange={this.handleUserInput} />
+                        <input type='submit' onSubmit={(evt) => this.handleOnSubmit(evt)}/>
+                    </form>
                 </Jumbotron>
             </div>
         )
