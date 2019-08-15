@@ -4,7 +4,7 @@ const mongoose = require('./connection.js')
 
 // A schema that will hold all the objects for 
 const QuestionsModelSchema = new mongoose.Schema({
-  subject: {
+  topic: {
     type: String,
     required: true,
   },
@@ -25,6 +25,10 @@ const QuestionsModelSchema = new mongoose.Schema({
   },
   optionD: {
     type: String,
+  },
+  subjectId: {
+    type: mongoose.Types.ObjectId,
+    required: true
   }
 })
 
@@ -33,8 +37,8 @@ const QuestionCollection = mongoose.model('Question', QuestionsModelSchema)
 
 // Takes no inputs
 // Returns all Questions
-function getAllQuestions() {
-  return QuestionCollection.find()
+function getAllQuestions(subjectId) {
+  return QuestionCollection.find({subjectId: subjectId})
 }
 
 // Takes a question Id as input
@@ -45,7 +49,8 @@ function getSingleQuestion(questionId) {
 
 // Takes an object with a required property of name required string of questions and answers a and b
 // Returns a new question object
-function createQuestion(newQuestion) {
+function createQuestion(newQuestion, subjectId) {
+  newQuestion.subjectId = subjectId
   return QuestionCollection.create(newQuestion)
 }
 
@@ -53,6 +58,11 @@ function createQuestion(newQuestion) {
 // Returns updated question object
 function updateQuestion(questionId, updatedQuestion) {
   return QuestionCollection.findByIdAndUpdate(questionId, updatedQuestion, { new: true })
+}
+// no input
+// outputs deleted accounts
+function deleteAllQuestions() {
+  return QuestionCollection.deleteMany()
 }
 
 // Takes a questionId as input
@@ -67,5 +77,6 @@ module.exports = {
   getSingleQuestion,
   createQuestion,
   updateQuestion,
-  deleteQuestion
+  deleteQuestion,
+  deleteAllQuestions
 }
