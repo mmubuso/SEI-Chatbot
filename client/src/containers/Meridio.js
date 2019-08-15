@@ -29,7 +29,12 @@ export default class Meridio extends Component {
         this.setState({entities: response.data.entities})
     }
 
-   
+    //Captures user input
+    handleUserInput = (event) => {
+        let newInput = this.state.userInput
+        newInput = event.target.value
+        this.setState({userInput : newInput})
+    }
 
 
     componentDidMount(){
@@ -46,6 +51,7 @@ export default class Meridio extends Component {
             <div className='col-lg-5 col-sm-12 Meridio'>
                 <Jumbotron>
 
+                    <input type='text' value={userInput} onChange={this.handleUserInput}/>
                 </Jumbotron>
             </div>
         )
