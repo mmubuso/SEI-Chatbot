@@ -6,6 +6,13 @@
    height: 70vh;
 }
 
+.MediaContainer {
+    height: 100%;
+    background-color: blue;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 /* Responsive Css  */
 @media (max-width: 768px) { 
     .Media {
@@ -16,4 +23,3 @@
     }
  }
 
- 

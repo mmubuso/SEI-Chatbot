@@ -64,24 +64,15 @@ export default class Meridio extends Component {
     render() {
 
         //destructure state
-        let { userInput, entities } = this.state
+        let { userInput, entities, messages } = this.state
 
         //destructure props
         let { filterMethod, allInformation, subjects, singleObjectInfo } = this.props
 
-        let subjectButtons = subjects.map(subject => {
-            return (
-                <button onClick={() => singleObjectInfo(subject._id)}>
-                    {subject.name}
-                </button>
-            )
-        })
-
-
         return (
-            <div className='col-lg-5 col-sm-12 Meridio'>
+            <div className='col-md-5 col-sm-12 Meridio'>
                 <Jumbotron>
-                    {subjectButtons}
+                    
                     <input type='text' value={userInput} onChange={this.handleUserInput} />
                 </Jumbotron>
             </div>
