@@ -1,0 +1,16 @@
+.Messages {
+    height: 100%;
+    background-color: white;
+    overflow-y: auto;
+}
+
+.message p{
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .Messages{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
