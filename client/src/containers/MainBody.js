@@ -11,7 +11,7 @@ export default class MainBody extends Component {
     state = {
         subjects: [],
         information: [],
-        subject: null
+        subject: {}
     }
 
     // updates state with all subjects in database
@@ -19,6 +19,13 @@ export default class MainBody extends Component {
         let response = await axios.get('api/v1/subjects')
         this.setState({ subjects: response.data })
     }
+
+    //Update state with a single object
+    getSingleSubject = async (subjectId) => {
+        let response = await axios.get(`api/v1/subjects/${subjectId}`)
+        this.setState({ subject: response.data })
+    }
+
     //Gets all information about one specific id
     //Input 
     //  subjectId - string of mongoId for subject
@@ -32,16 +39,19 @@ export default class MainBody extends Component {
     //Input
     // topic - string of topic we are looking for
     filterForTopic = (topic) => {
-        let filteredArray = this.state.information.filter(info => {
-            return info.questions === topic
-        })
+        let filteredArray = this.state.information
+        if (topic) {
+            filteredArray.filter(info => {
+                return info.questions === topic
+            })
+        }
         this.setState({ information: filteredArray })
     }
 
     componentDidMount() {
         this.getAllSubject()
         // For testing purposes
-        this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6","questions")
+        this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6", "questions")
     }
 
     render() {
@@ -52,7 +62,12 @@ export default class MainBody extends Component {
             <Container>
                 <div className='row align-items-center MainBody' >
                     <Media />
-                    <Meridio subjects={subjects} />
+                    <Meridio
+                        filterMethod={this.filterForTopic}
+                        allInformation={this.getAllInformationForChosenSubject}
+                        subjects={subjects}
+                        singleObjectInfo={this.getSingleSubject}
+                    />
                 </div>
             </Container>
         )
