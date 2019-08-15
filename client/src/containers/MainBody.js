@@ -18,9 +18,16 @@ export default class MainBody extends Component {
     // updates state with all subjects in database
     getAllSubject = async () => {
         let response = await axios.get('api/v1/subjects')
-        await this.setState({subjects: response.data})
+        this.setState({ subjects: response.data })
     }
-   
+    //This method gets all information about one specific id
+    //Input 
+    //  subjectId - string of mongoId for subject
+    //  information -  string that should only either be 'resources' or 'questions'
+    getAllInformationForChosenSubject = async (subjectId, information) => {
+        let response = await axios.get(`api/v1/subjects/${subjectId}/${information}`)
+        this.setState({ information: response.data })
+    }
 
 
 
@@ -36,7 +43,7 @@ export default class MainBody extends Component {
             <Container>
                 <div className='row align-items-center MainBody' >
                     <Media />
-                    <Meridio subjects={subjects}/>
+                    <Meridio subjects={subjects} />
                 </div>
             </Container>
         )
