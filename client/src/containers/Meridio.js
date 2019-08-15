@@ -6,10 +6,7 @@ import axios from'axios'
 export default class Meridio extends Component {
 
     state = {
-        entities: {
-            intent: {},
-            
-        },
+        entities: {},
         userInput: '',
         meridioFlag: false,
     }
@@ -29,8 +26,17 @@ export default class Meridio extends Component {
         this.setState({entities: response.data.entities})
     }
 
-    // Validate to make sure input has intent
+    // Validate to make sure entities has intent
+    valdateWitIntent = () => {
+        return this.state.entities.intent ? true : false
+    }
 
+    // Validate to make sure entities has topic
+    valdateWitTopic = () => {
+        return this.state.entities.topic ? true : false
+    }
+
+    // Turn on/off calls to wit api
     toggleMeridio = () => {
         this.setState((state) => {
             return {meridioFlag : !state.meridioFlag}
@@ -50,6 +56,8 @@ export default class Meridio extends Component {
     componentDidMount(){
         //Use to test api call
         // this.callWitApi('What will you open the store')
+        console.log(this.valdateWitIntent())
+        console.log(this.valdateWitTopic())
     }
     render() {
 
