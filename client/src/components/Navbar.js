@@ -1,14 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Navbar as StrapNavbar, NavLink, Nav, NavbarBrand, NavItem } from 'reactstrap'
+import { Navbar as StrapNavbar, Nav, NavbarBrand, NavItem } from 'reactstrap'
 
 export default function Navbar() {
     return (
         <StrapNavbar color="dark">
-            <NavbarBrand>
-                <NavLink href='/'>
-                    Meridio
-                </NavLink>
+            <NavbarBrand href='/'>
+                Meridio
             </NavbarBrand>
             <Nav>
                 <NavItem className='mr-4'>
