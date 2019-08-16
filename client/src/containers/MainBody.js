@@ -51,17 +51,19 @@ export default class MainBody extends Component {
     componentDidMount() {
         this.getAllSubject()
         // For testing purposes
-        this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6", "questions")
+        this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6", "resources")
     }
 
     render() {
         //destructure state
-        let { subjects } = this.state
+        let { subjects, information } = this.state
 
         return (
             <Container>
                 <div className='row align-items-center MainBody' >
-                    <Media />
+                    <Media 
+                        information={information}
+                    />
                     <Meridio
                         filterMethod={this.filterForTopic}
                         allInformation={this.getAllInformationForChosenSubject}
