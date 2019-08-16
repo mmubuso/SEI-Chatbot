@@ -106,7 +106,7 @@ export default class Meridio extends Component {
         let { userInput, messageFlag, messages } = this.state
 
         //destructure props
-        let { filterMethod, allInformation, subjects, singleObjectInfo } = this.props
+        let {subjectMethod, filterMethod, allInformation, subjects, singleObjectInfo } = this.props
 
         return (
             <div className='col-md-5 col-sm-12 Meridio'>
@@ -121,7 +121,8 @@ export default class Meridio extends Component {
                             <Subject
                                 toggle={this.togggleMessageScreen}
                                 subjects={subjects}
-                                subjectMethod={singleObjectInfo}
+                                singleSubjectMethod={singleObjectInfo}
+                                subjectMethod={subjectMethod}
                             />
                     }
 

@@ -70,6 +70,7 @@ export default class MainBody extends Component {
                         filterMethod={this.filterForTopic}
                         allInformation={this.getAllInformationForChosenSubject}
                         subjects={subjects}
+                        subjectMethod={this.getAllSubject}
                         singleObjectInfo={this.getSingleSubject}
                     />
                 </div>

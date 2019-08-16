@@ -24,7 +24,6 @@ export default class InformationForm extends Component {
     }
 
     render() {
-        console.log(this.props.subjects)
         //destructure state and props
         let { subject, intent } = this.state
         let { subjects } = this.props

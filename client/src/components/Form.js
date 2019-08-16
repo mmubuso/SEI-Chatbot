@@ -14,7 +14,7 @@ export default class Form extends Component {
     render() {
         let { resourceObject, createForm } = this.props
 
-        let form = resourceObject.map(resource => {
+        let formList = resourceObject.map(resource => {
             return (
                 <div key={resource} >
                     <label htmlFor={resource}>{resource}</label>
@@ -24,10 +24,10 @@ export default class Form extends Component {
         })
 
         return (
-            <form onSubmit={(evt) => createForm(evt,this.state)}>
-                {form}
+            <div onSubmit={(evt) => createForm(evt,this.state)}>
+                {formList}
                 <button type='submit' onClick={(evt) => createForm(evt,this.state)}>SUBMIT</button>
-            </form>
+            </div>
         )
     }
 }
