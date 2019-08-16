@@ -56,13 +56,15 @@ export default class MainBody extends Component {
 
     render() {
         //destructure state
-        let { subjects, information } = this.state
+        let { subjects, information, subject} = this.state
 
         return (
             <Container>
                 <div className='row align-items-center MainBody' >
                     <Media 
                         information={information}
+                        subjects={subjects}
+                        singleSubject={subject}
                     />
                     <Meridio
                         filterMethod={this.filterForTopic}
