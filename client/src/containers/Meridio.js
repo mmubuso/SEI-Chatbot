@@ -16,9 +16,13 @@ export default class Meridio extends Component {
     }
 
     main = () => {
-        console.log(this.valdateWitIntent() + ' ' + this.valdateWitTopic())
-        if(this.valdateWitIntent() && this.valdateWitTopic()){
+        console.log(this.valdateWitApiIntent() + ' ' + this.valdateWitApiTopic())
+        if(this.valdateWitApiIntent() && this.valdateWitApiTopic()){
             this.pushUserInputToMessages('Meridio: Generating requested information')
+        }else if(this.valdateWitApiIntent()){
+            this.pushUserInputToMessages('Meridio: Would like all the available information for this topic?')
+            this.meridioFlag()
+            this.pushUserInputToMessages('Meridio: Yes/ No')
         }
     }
 
@@ -38,12 +42,12 @@ export default class Meridio extends Component {
     }
 
     // Validate to make sure entities has intent
-    valdateWitIntent = () => {
+    valdateWitApiIntent = () => {
         return this.state.entities.intent ? true : false
     }
 
     // Validate to make sure entities has topic
-    valdateWitTopic = () => {
+    valdateWitApiTopic = () => {
         // return this.state.entities.topic ? true : false
         return true
     }
