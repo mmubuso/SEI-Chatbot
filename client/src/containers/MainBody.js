@@ -35,6 +35,13 @@ export default class MainBody extends Component {
         await this.setState({ information: response.data })
     }
 
+    //delete a topic
+    deleteTopic = async (subjectId, category, itemId) => {
+        axios.delete(`api/v1/subjects/${subjectId}/${category}/${itemId}`)
+            .then(res => this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6", "questions"))
+            .catch(err => console.log(err))
+    }
+
     //Filter through information for everything that has a specific input
     //Input
     // topic - string of topic we are looking for
@@ -51,20 +58,21 @@ export default class MainBody extends Component {
     componentDidMount() {
         this.getAllSubject()
         // For testing purposes
-        this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6", "resources")
+        this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6", "questions")
     }
 
     render() {
         //destructure state
-        let { subjects, information, subject} = this.state
+        let { subjects, information, subject } = this.state
 
         return (
             <Container>
                 <div className='row align-items-center MainBody' >
-                    <Media 
+                    <Media
                         information={information}
                         subjects={subjects}
                         singleSubject={subject}
+                        deleteMethod={this.deleteTopic}
                     />
                     <Meridio
                         filterMethod={this.filterForTopic}
