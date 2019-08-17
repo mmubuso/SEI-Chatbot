@@ -4,8 +4,10 @@
     overflow-y: auto;
 }
 
-.Subjects button{
+
+.Subjects button,.subject{
     height: 25px;
+    display: inline-block;
 }
 
 @media (max-width: 768px) {

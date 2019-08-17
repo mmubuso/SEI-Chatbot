@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Subject.css'
 import SubjectForm from './SubjectForm';
+import axios from 'axios';
 
 export default class Subject extends Component {
 
@@ -20,19 +21,30 @@ export default class Subject extends Component {
         })
     }
 
+    deleteSubject = (id) => {
+        axios.delete(`/api/v1/subjects/${id}`)
+            .then(() => this.props.subjectMethod())
+            .catch((err) => console.log(err))
+    }
+
     render() {
         //destructure props
-        let { subjects ,subjectMethod} = this.props
+        let { subjects, subjectMethod } = this.props
 
         //create jsx elements for subjects
         let subjectList = subjects.map(subject => {
             return (
-                <button
-                    key={subject._id}
-                    className='subject col-sm-12'
-                    onClick={() => this.runTwoMethods(subject._id)}>
-                    {subject.name}
-                </button>
+                <div className='col-sm-12'>
+                    <div
+                        key={subject._id}
+                        className='subject'
+                        onClick={() => this.runTwoMethods(subject._id)}>
+                        {subject.name}
+                    </div>
+                    <button onClick={() => this.deleteSubject((subject._id))}> Delete</button>
+
+                </div>
+
             )
         })
 
