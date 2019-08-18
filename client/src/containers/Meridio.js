@@ -15,14 +15,20 @@ export default class Meridio extends Component {
         messageFlag: false
     }
 
+    //Run interaction between user and meridio
     main = () => {
         console.log(this.valdateWitApiIntent() + ' ' + this.valdateWitApiTopic())
         if(this.valdateWitApiIntent() && this.valdateWitApiTopic()){
             this.pushUserInputToMessages('Meridio: Generating requested information')
-        }else if(this.valdateWitApiIntent()){
-            this.pushUserInputToMessages('Meridio: Would like all the available information for this topic?')
+        }else if(this.valdateWitApiIntent() && !this.valdateWitApiTopic()){
+            this.pushUserInputToMessages(`Meridio: I wasn't able to detect a topic, so here is everything on the subject?`)
             this.meridioFlag()
-            this.pushUserInputToMessages('Meridio: Yes/ No')
+        }else if(!this.valdateWitApiIntent() && this.valdateWitApiTopic()){
+            this.pushUserInputToMessages(`Meridio: So I detected the topic but I couldnt detect whether you wanted to learn or test yourself on this topic
+            . Try asking the same question in another way`)
+        }else if(!this.valdateWitApiIntent() && !this.valdateWitApiTopic()){
+            this.pushUserInputToMessages(`Meridio: I'm only good at helping you find information to learn or test yourself on. Try asking me about a topic 
+            you want to learn on thats in the subject you selected.`)
         }
     }
 
