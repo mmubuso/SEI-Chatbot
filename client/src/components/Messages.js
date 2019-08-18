@@ -7,9 +7,11 @@ export default class Messages extends Component {
     render() {
         let { messages } = this.props
 
-        let messageList = messages.map(message => {
+        let messageList = messages.map((message,index) => {
             return (
-                <div className="message">
+                <div
+                    key={index}
+                    className="message">
                     <p>{message}</p>
                 </div>
             )
