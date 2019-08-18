@@ -6,25 +6,27 @@ const mongoose = require('./connection.js')
 const QuestionsModelSchema = new mongoose.Schema({
   topic: {
     type: String,
-    required: true,
+    required: true
   },
   questions: {
     type: String,
-    // required: true
+    required: true
   },
   optionA: {
     type: String,
-    // required: true,
+    required: true
   },
   optionB: {
     type: String,
-    // required: true,
+    required: true
   },
   optionC: {
     type: String,
+    required: true
   },
   optionD: {
     type: String,
+    required: true
   },
   subjectId: {
     type: mongoose.Types.ObjectId,
