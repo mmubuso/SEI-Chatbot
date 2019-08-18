@@ -23,8 +23,13 @@ export default class Meridio extends Component {
             //we get all the valid information with the users intent
             await this.props.allInformation('questions')
             //we filter through the valdi information with the users topic
-            await this.props.filterMethod('dataTypes')
-            this.pushUserInputToMessages('Meridio: Generating requested information')
+            await this.props.filterMethod('kJDlkas')
+            //check if we have any information the topic the user asked for
+            this.checkIfArrayIsEmpty() ?
+                this.pushUserInputToMessages(`Meridio: Hmmm looks like I dont have anything on TOPIC, 
+            if you find that information remember to come back here and create that information`)
+                :
+                this.pushUserInputToMessages('Meridio: Generating requested information')
         } else if (this.valdateWitApiIntent() && !this.valdateWitApiTopic()) {
             //We use this method to present all information if we don't have a valid topic
             this.props.allInformation('5d54a2b77f997d5daa9463ce', 'questions')
@@ -37,6 +42,11 @@ export default class Meridio extends Component {
             this.pushUserInputToMessages(`Meridio: I'm only good at helping you find information to learn or test yourself on. Try asking me about a topic 
             you want to learn on thats in the subject you selected.`)
         }
+    }
+
+    //Check if arry containing information is empty
+    checkIfArrayIsEmpty = () => {
+        return this.props.information.length === 0 ? true : false
     }
 
     //Send userinput to wit api
