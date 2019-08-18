@@ -16,17 +16,24 @@ export default class Meridio extends Component {
     }
 
     //Run interaction between user and meridio
-    main = () => {
+    main = async () => {
         console.log(this.valdateWitApiIntent() + ' ' + this.valdateWitApiTopic())
-        if(this.valdateWitApiIntent() && this.valdateWitApiTopic()){
+        if (this.valdateWitApiIntent() && this.valdateWitApiTopic()) {
+            //captured from valid intent and valid topic
+            //we get all the valid information with the users intent
+            await this.props.allInformation('questions')
+            //we filter through the valdi information with the users topic
+            await this.props.filterMethod('dataTypes')
             this.pushUserInputToMessages('Meridio: Generating requested information')
-        }else if(this.valdateWitApiIntent() && !this.valdateWitApiTopic()){
+        } else if (this.valdateWitApiIntent() && !this.valdateWitApiTopic()) {
+            //We use this method to present all information if we don't have a valid topic
+            this.props.allInformation('5d54a2b77f997d5daa9463ce', 'questions')
             this.pushUserInputToMessages(`Meridio: I wasn't able to detect a topic, so here is everything on the subject?`)
             this.meridioFlag()
-        }else if(!this.valdateWitApiIntent() && this.valdateWitApiTopic()){
+        } else if (!this.valdateWitApiIntent() && this.valdateWitApiTopic()) {
             this.pushUserInputToMessages(`Meridio: So I detected the topic but I couldnt detect whether you wanted to learn or test yourself on this topic
             . Try asking the same question in another way`)
-        }else if(!this.valdateWitApiIntent() && !this.valdateWitApiTopic()){
+        } else if (!this.valdateWitApiIntent() && !this.valdateWitApiTopic()) {
             this.pushUserInputToMessages(`Meridio: I'm only good at helping you find information to learn or test yourself on. Try asking me about a topic 
             you want to learn on thats in the subject you selected.`)
         }
@@ -112,7 +119,7 @@ export default class Meridio extends Component {
         let { userInput, messageFlag, messages } = this.state
 
         //destructure props
-        let {subjectMethod, filterMethod, allInformation, subjects, singleObjectInfo } = this.props
+        let { subjectMethod, subjects, singleObjectInfo } = this.props
 
         return (
             <div className='col-md-5 col-sm-12 Meridio'>

@@ -38,8 +38,8 @@ export default class MainBody extends Component {
     //Input 
     //  subjectId - string of mongoId for subject
     //  information -  string that should only either be 'resources' or 'questions'
-    getAllInformationForChosenSubject = async (subjectId, information) => {
-        let response = await axios.get(`api/v1/subjects/${subjectId}/${information}`)
+    getAllInformationForChosenSubject = async (information) => {
+        let response = await axios.get(`api/v1/subjects/${this.state.subject._id}/${information}`)
         await this.setState({ information: response.data })
     }
 
@@ -53,20 +53,19 @@ export default class MainBody extends Component {
     //Filter through information for everything that has a specific input
     //Input
     // topic - string of topic we are looking for
-    filterForTopic = (topic) => {
+    filterForTopic = (searchKey => {
         let filteredArray = this.state.information
-        if (topic) {
-            filteredArray.filter(info => {
-                return info.questions === topic
-            })
-        }
+        console.log(filteredArray)
+        filteredArray = filteredArray.filter(info => {
+            return info.topic.includes(searchKey)
+        })
+        console.log(filteredArray)
         this.setState({ information: filteredArray })
-    }
+    })
 
     componentDidMount() {
         this.getAllSubject()
         // For testing purposes
-        this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6", "questions")
     }
 
     render() {
@@ -82,7 +81,7 @@ export default class MainBody extends Component {
                         singleSubject={subject}
                         deleteMethod={this.deleteTopic}
                         showSingleMedia={showSingleMedia}
-                        toggleShowSingleMedia={this.toggleShowSingleMedia}
+                        toggleShowSingleMedia={this.tog}
                     />
                     <Meridio
                         filterMethod={this.filterForTopic}
