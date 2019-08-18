@@ -8,14 +8,13 @@ import InformationForm from '../components/InformationForm';
 // Media is the compoenent that will hold all the questions and information
 export default class Media extends Component {
     state = {
-        showSingleMedia: false,
         singleMedia: {},
     }
 
     render() {
 
         //Destructure props and state
-        let { information, subjects, deleteMethod } = this.props;
+        let { toggleShowSingleMedia, information, subjects, deleteMethod, singleSubject, showSingleMedia } = this.props;
 
 
         //Create list of items
@@ -43,12 +42,18 @@ export default class Media extends Component {
             <div className='col-md-7 col-sm-12 Media'>
                 <Jumbotron>
                     <div className='MediaContainer'>
-                        {informationList}
-                        {/* <InformationForm
-                            subjects={subjects}
-                            singleSubject={singleSubject}
-                        /> */}
+                        {
+                            showSingleMedia
+                                ?
+                                <InformationForm
+                                    subjects={subjects}
+                                    singleSubject={singleSubject} />
+                                :
+                                informationList
+
+                        }
                     </div>
+                    <button onClick={toggleShowSingleMedia}>{showSingleMedia ? 'Go Back' : 'Create Topic'}</button>
                 </Jumbotron>
             </div>
         )

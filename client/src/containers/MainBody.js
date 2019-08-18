@@ -11,7 +11,15 @@ export default class MainBody extends Component {
     state = {
         subjects: [],
         information: [],
-        subject: {}
+        subject: {},
+        showSingleMedia: false,
+    }
+
+    //toggle showSingle Media on/off
+    toggleShowSingleMedia = () => {
+        this.setState(state => {
+            return { showSingleMedia: !state.showSingleMedia }
+        })
     }
 
     // updates state with all subjects in database
@@ -63,7 +71,7 @@ export default class MainBody extends Component {
 
     render() {
         //destructure state
-        let { subjects, information, subject } = this.state
+        let { subjects, information, subject, showSingleMedia } = this.state
 
         return (
             <Container>
@@ -73,6 +81,8 @@ export default class MainBody extends Component {
                         subjects={subjects}
                         singleSubject={subject}
                         deleteMethod={this.deleteTopic}
+                        showSingleMedia={showSingleMedia}
+                        toggleShowSingleMedia={this.toggleShowSingleMedia}
                     />
                     <Meridio
                         filterMethod={this.filterForTopic}
