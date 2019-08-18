@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar as StrapNavbar, Nav, NavbarBrand, NavItem } from 'reactstrap'
+import { Navbar as StrapNavbar, Nav, NavItem } from 'reactstrap'
 import { Link } from 'react-router-dom'
 export default function Navbar() {
     return (
