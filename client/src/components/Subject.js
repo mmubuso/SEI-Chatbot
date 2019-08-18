@@ -21,6 +21,7 @@ export default class Subject extends Component {
         })
     }
 
+    //delete item
     deleteSubject = (id) => {
         axios.delete(`/api/v1/subjects/${id}`)
             .then(() => this.props.subjectMethod())
@@ -34,9 +35,10 @@ export default class Subject extends Component {
         //create jsx elements for subjects
         let subjectList = subjects.map(subject => {
             return (
-                <div className='col-sm-12'>
+                <div
+                    key={subject._id}
+                    className='col-sm-12'>
                     <div
-                        key={subject._id}
                         className='subject'
                         onClick={() => this.runTwoMethods(subject._id)}>
                         {subject.name}
@@ -47,8 +49,6 @@ export default class Subject extends Component {
 
             )
         })
-
-
 
         return (
             <div className='Subjects mb-4'>
