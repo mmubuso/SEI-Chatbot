@@ -81,7 +81,7 @@ export default class MainBody extends Component {
                         singleSubject={subject}
                         deleteMethod={this.deleteTopic}
                         showSingleMedia={showSingleMedia}
-                        toggleShowSingleMedia={this.tog}
+                        toggleShowSingleMedia={this.toggleShowSingleMedia}
                     />
                     <Meridio
                         filterMethod={this.filterForTopic}
