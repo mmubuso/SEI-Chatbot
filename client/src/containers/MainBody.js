@@ -74,8 +74,8 @@ export default class MainBody extends Component {
 
         return (
             <Container>
-                <h1 className='display-2'>{subject.name}</h1>
                 <div className='row align-items-center MainBody' >
+                <h1 className='display-2 col-md-12'>{subject.name}</h1>
                     <Media
                         information={information}
                         subjects={subjects}
