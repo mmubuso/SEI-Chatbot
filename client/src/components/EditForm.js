@@ -35,7 +35,7 @@ export default class EditForm extends Component {
         axios.put(`/api/v1/subjects/${this.props.match.params.subjectId}/${this.props.match.params.category}/${this.props.match.params.resourceId}`,
             this.state.object)
             .then(res =>
-                this.setState({redirect : true})
+                this.setState({ redirect: true })
             )
             .catch(err => console.log(err))
     }
@@ -66,6 +66,7 @@ export default class EditForm extends Component {
                             <h1>Edit Item</h1>
                             {newItems}
                             <button onClick={this.updateItem}>Submit</button>
+                            <button onClick={ () => this.setState({ redirect: true })}>Cancel</button>
                         </div>
                 }
             </div>

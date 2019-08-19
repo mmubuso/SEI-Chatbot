@@ -24,11 +24,12 @@ export default class InformationForm extends Component {
         object.topic = this.topic.value
         await this.setState({ infoObject: object })
         await axios.post(`/api/v1/subjects/${this.state.subject}/${this.state.intent}`, this.state.infoObject)
+        this.props.toggleShowSingleMedia()
     }
 
     render() {
         //destructure state and props
-        let { subject, intent } = this.state
+        let { intent } = this.state
         let { subjects } = this.props
 
         //Create selector for object
