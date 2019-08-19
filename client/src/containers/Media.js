@@ -27,6 +27,7 @@ export default class Media extends Component {
                     subjectId={info.subjectId}
                     infoTitle={info.questions ? info.questions : info.topic}
                     category={info.questions ? 'questions' : 'resources'}
+                    images={info.images}
                     info1={info.optionA ? info.optionA : info.resourceA}
                     info2={info.optionB ? info.optionB : info.resourceB}
                     info3={info.optionC ? info.optionC : info.resourceC}

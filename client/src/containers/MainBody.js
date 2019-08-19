@@ -46,7 +46,7 @@ export default class MainBody extends Component {
     //delete a topic
     deleteTopic = async (subjectId, category, itemId) => {
         axios.delete(`api/v1/subjects/${subjectId}/${category}/${itemId}`)
-            .then(res => this.getAllInformationForChosenSubject("5d54a165ec4bf85d8628c4e6", "questions"))
+            .then(res => this.getAllInformationForChosenSubject(category))
             .catch(err => console.log(err))
     }
 
@@ -74,6 +74,7 @@ export default class MainBody extends Component {
 
         return (
             <Container>
+                <h1 className='display-2'>{subject.name}</h1>
                 <div className='row align-items-center MainBody' >
                     <Media
                         information={information}
@@ -85,6 +86,7 @@ export default class MainBody extends Component {
                     />
                     <Meridio
                         filterMethod={this.filterForTopic}
+                        information={information}
                         allInformation={this.getAllInformationForChosenSubject}
                         subjects={subjects}
                         subjectMethod={this.getAllSubject}
