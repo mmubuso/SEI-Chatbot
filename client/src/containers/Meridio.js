@@ -68,7 +68,7 @@ export default class Meridio extends Component {
             method: 'GET',
             url: `https://api.wit.ai/message?v=20190818&q=${userInput}`,
             headers: {
-                Authorization: `Bearer ZXAN76JJJTVVS2Z6XLWVFBQKPHIAQ5E2`,
+                Authorization: `Bearer `,
             }
         })
         this.setState({ entities: response.data.entities })
