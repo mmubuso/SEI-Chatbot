@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 import './Information.css';
-import axios from 'axios';
 import { Link } from 'react-router-dom'
 
 export default class Information extends Component {
-
-
-    deleteItem = () => {
-        axios.delete()
-    }
 
     render() {
 
         //destructure props
         let { info1, info2, info3, info4, infoTitle, subjectId, itemId, category } = this.props
-
-
-        //create structure to be sent to backend
 
 
         return (
