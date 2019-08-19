@@ -48,7 +48,8 @@ export default class Media extends Component {
                                 ?
                                 <InformationForm
                                     subjects={subjects}
-                                    singleSubject={singleSubject} />
+                                    singleSubject={singleSubject} 
+                                    toggleShowSingleMedia={toggleShowSingleMedia}/>
                                 :
                                 informationList
 
