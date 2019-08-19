@@ -6,6 +6,7 @@
 
 .Meridio .jumbotron{
     height: 70vh;
+    padding-bottom: 20%;
     padding-left: 0;
     padding-right: 0;
     padding-top: 5%;
@@ -22,4 +23,9 @@
     .Meridio .jumbotron{
         height: 30vh;
     }
+ }
+
+.Meridio .row{
+     margin-left: 0;
+     margin-right: 0;
  }

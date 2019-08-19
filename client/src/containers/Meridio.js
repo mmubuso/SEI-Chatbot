@@ -18,28 +18,38 @@ export default class Meridio extends Component {
     //Run interaction between user and meridio
     main = async () => {
         console.log(this.valdateWitApiIntent() + ' ' + this.valdateWitApiTopic())
+
         if (this.valdateWitApiIntent() && this.valdateWitApiTopic()) {
             //captured from valid intent and valid topic
             //we get all the valid information with the users intent
-            await this.props.allInformation('questions')
+            await this.props.allInformation(this.state.entities.intent[0].value)
             //we filter through the valdi information with the users topic
-            await this.props.filterMethod('kJDlkas')
+            console.log(`Intent: ${this.state.entities.intent[0].value} Topic: ${this.state.entities.topic[0].value}`)
+            await this.props.filterMethod(this.state.entities.topic[0].value)
             //check if we have any information the topic the user asked for
             this.checkIfArrayIsEmpty() ?
-                this.pushUserInputToMessages(`Meridio: Hmmm looks like I dont have anything on TOPIC, 
+                this.pushUserInputToMessages(`Meridio: Hmmm looks like I dont have anything on the topic '
+                ${this.state.entities.topic[0]}', 
             if you find that information remember to come back here and create that information`)
                 :
                 this.pushUserInputToMessages('Meridio: Generating requested information')
-        } else if (this.valdateWitApiIntent() && !this.valdateWitApiTopic()) {
+        }
+
+        // If the input has an intent but does not have a valid topic
+        else if (this.valdateWitApiIntent() && !this.valdateWitApiTopic()) {
             //We use this method to present all information if we don't have a valid topic
-            this.props.allInformation('5d54a2b77f997d5daa9463ce', 'questions')
+            this.props.allInformation(this.state.entities.intent[0].value)
             this.pushUserInputToMessages(`Meridio: I wasn't able to detect a topic, so here is everything on the subject?`)
-            this.meridioFlag()
-        } else if (!this.valdateWitApiIntent() && this.valdateWitApiTopic()) {
+        }
+        // If the input has a valid topic but the intent is not clear
+        else if (!this.valdateWitApiIntent() && this.valdateWitApiTopic()) {
             this.pushUserInputToMessages(`Meridio: So I detected the topic but I couldnt detect whether you wanted to learn or test yourself on this topic
             . Try asking the same question in another way`)
-        } else if (!this.valdateWitApiIntent() && !this.valdateWitApiTopic()) {
-            this.pushUserInputToMessages(`Meridio: I'm only good at helping you find information to learn or test yourself on. Try asking me about a topic 
+        }
+
+        // If the users input doesnt have a valid intent or topic
+        else if (!this.valdateWitApiIntent() && !this.valdateWitApiTopic()) {
+            this.pushUserInputToMessages(`Meridio: I'm only good at helping you find javascript information to learn or test yourself on. Try asking me about a topic 
             you want to learn on thats in the subject you selected.`)
         }
     }
@@ -56,9 +66,9 @@ export default class Meridio extends Component {
         let userInput = this.state.userInput.replace(/[ ]/g, '%20')
         let response = await axios({
             method: 'GET',
-            url: `https://api.wit.ai/message?v=20190815&q=${userInput}`,
+            url: `https://api.wit.ai/message?v=20190818&q=${userInput}`,
             headers: {
-                Authorization: `Bearer 4E6O2KLWJIQ4G7M3YG564NJR4BO7CSBY`,
+                Authorization: `Bearer `,
             }
         })
         this.setState({ entities: response.data.entities })
@@ -66,13 +76,13 @@ export default class Meridio extends Component {
 
     // Validate to make sure entities has intent
     valdateWitApiIntent = () => {
-        return this.state.entities.intent ? true : false
+        console.log(this.state.entities.intent[0].confidence)
+        return this.state.entities.intent && this.state.entities.intent[0].confidence > 0.79 ? true : false
     }
 
     // Validate to make sure entities has topic
     valdateWitApiTopic = () => {
-        // return this.state.entities.topic ? true : false
-        return true
+        return this.state.entities.topic ? true : false
     }
 
 
@@ -149,11 +159,22 @@ export default class Meridio extends Component {
                             />
                     }
 
-                    <form onSubmit={(evt) => this.handleOnSubmit(evt)}>
-                        <input type='text' value={userInput} onChange={this.handleUserInput} />
-                        <input type='submit' onSubmit={(evt) => this.handleOnSubmit(evt)} />
+                    <form onSubmit={(evt) => this.handleOnSubmit(evt)} className='row'>
+                        <div className='col-xs-12'>
+                            <input type='text' value={userInput} onChange={this.handleUserInput} />
+                            <input type='submit' onSubmit={(evt) => this.handleOnSubmit(evt)} />
+                        </div>
                     </form>
                 </Jumbotron>
+                {
+                    messageFlag ?
+                        <div className='col-12'>
+                            <button
+                                onClick={this.togggleMessageScreen}>Change Subject</button>
+                        </div>
+                        :
+                        null
+                }
             </div>
         )
     }
