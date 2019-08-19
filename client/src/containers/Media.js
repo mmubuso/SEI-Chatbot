@@ -31,7 +31,7 @@ export default class Media extends Component {
                     info1={info.optionA ? info.optionA : info.resourceA}
                     info2={info.optionB ? info.optionB : info.resourceB}
                     info3={info.optionC ? info.optionC : info.resourceC}
-                    info4={info.optionD ? info.optionD : info.resourceD}
+                    info4={info.answer ? info.answer : info.resourceD}
                     subjects={subjects}
                 />
             )

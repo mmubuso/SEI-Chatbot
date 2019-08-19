@@ -26,7 +26,14 @@ export default class Information extends Component {
                 <li>{info1}</li>
                 <li>{info2}</li>
                 <li>{info3 ? info3 : 'N/A'}</li>
-                <li>{info4 ? info4 : 'N/A'} </li>
+                {category === 'questions'
+                    ?
+                    <li>
+                        <strong>{info4 ? info4 : 'N/A'}
+                        </strong> </li>
+                    :
+                    <li>{info4 ? info4 : 'N/A'} </li>
+                }
                 <Link to={`/resource/${itemId}/${category}/${subjectId}`}>Edit Info</Link>
                 <button
                     onClick={() => this.props.deleteMethod(subjectId, category, itemId)}>Delete</button>
