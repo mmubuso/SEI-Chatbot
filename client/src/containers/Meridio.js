@@ -29,7 +29,7 @@ export default class Meridio extends Component {
             //check if we have any information the topic the user asked for
             this.checkIfArrayIsEmpty() ?
                 this.pushUserInputToMessages(`Meridio: Hmmm looks like I dont have anything on the topic '
-                ${this.state.entities.topic[0]}', 
+                ${this.state.entities.topic[0].value}', 
             if you find that information remember to come back here and create that information`)
                 :
                 this.pushUserInputToMessages('Meridio: Generating requested information')
@@ -68,7 +68,7 @@ export default class Meridio extends Component {
             method: 'GET',
             url: `https://api.wit.ai/message?v=20190818&q=${userInput}`,
             headers: {
-                Authorization: `Bearer `,
+                Authorization: `Bearer ZXAN76JJJTVVS2Z6XLWVFBQKPHIAQ5E2`,
             }
         })
         this.setState({ entities: response.data.entities })
@@ -76,7 +76,6 @@ export default class Meridio extends Component {
 
     // Validate to make sure entities has intent
     valdateWitApiIntent = () => {
-        console.log(this.state.entities.intent[0].confidence)
         return this.state.entities.intent && this.state.entities.intent[0].confidence > 0.79 ? true : false
     }
 
@@ -106,8 +105,10 @@ export default class Meridio extends Component {
     handleOnSubmit = async (event) => {
         event.preventDefault()
         await this.callWitApi()
-        this.pushUserInputToMessages(`Human: ${this.state.userInput}`)
-        this.main()
+        if(this.state.userInput !== ''){
+            this.pushUserInputToMessages(`Human: ${this.state.userInput}`)
+            this.main()
+        }
     }
 
     //Push user message to list of messages
