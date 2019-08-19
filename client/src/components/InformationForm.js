@@ -15,6 +15,9 @@ export default class InformationForm extends Component {
         this.setState({ [stateTargetName]: event.target.value })
     }
  
+    componentDidMount(){
+        this.setState({subject: this.props.subjects[0]._id})
+    }
     //Create new information
     createNewInfo = async (event,object) => {
         event.preventDefault()
@@ -47,7 +50,7 @@ export default class InformationForm extends Component {
             <div>
                 <form>
                     <label htmlFor='subject'>Select Subject </label>
-                    <select required name='subject' id='subject' onChange={this.handleFormChange} value={subject}>
+                    <select required name='subject' id='subject' onChange={this.handleFormChange} >         
                         {subjectLists}
                     </select>
                     <label htmlFor='intent'>Is this a question or a resource</label>
