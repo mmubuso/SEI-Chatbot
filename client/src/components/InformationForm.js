@@ -42,8 +42,8 @@ export default class InformationForm extends Component {
             )
         })
 
-        let questionObject = ['questions', 'images', 'optionA', 'optionB', 'optionC', 'optionD']
-        let resourcesObject = ['resourceA', 'images', 'resourceB', 'resourceC', 'resourceD']
+        let questionObject = ['questions', 'images', 'optionA', 'optionB', 'optionC', 'answer']
+        let resourcesObject = ['resourceA', 'images', 'resourceB', 'resourceC', 'resourceD',]
 
 
 
