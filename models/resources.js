@@ -8,17 +8,21 @@ const ResourcesModelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  images: {
+    type: String,
+    default: null
+  },
   resourceA: {
     type: String,
-    // required: true
+    required: true
   },
   resourceB: {
     type: String,
-    // required: true,
+    required: true,
   },
   resourceC: {
     type: String,
-    // required: true,
+    required: true,
   },
   resourceD: {
     type: String,

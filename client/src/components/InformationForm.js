@@ -14,16 +14,16 @@ export default class InformationForm extends Component {
         let stateTargetName = event.target.name
         this.setState({ [stateTargetName]: event.target.value })
     }
- 
-    componentDidMount(){
-        this.setState({subject: this.props.subjects[0]._id})
+
+    componentDidMount() {
+        this.setState({ subject: this.props.subjects[0]._id })
     }
     //Create new information
-    createNewInfo = async (event,object) => {
+    createNewInfo = async (event, object) => {
         event.preventDefault()
         object.topic = this.topic.value
-        await this.setState({infoObject: object})
-        await axios.post(`/api/v1/subjects/${this.state.subject}/${this.state.intent}`,this.state.infoObject)
+        await this.setState({ infoObject: object })
+        await axios.post(`/api/v1/subjects/${this.state.subject}/${this.state.intent}`, this.state.infoObject)
     }
 
     render() {
@@ -41,16 +41,16 @@ export default class InformationForm extends Component {
             )
         })
 
-        let questionObject = ['questions','optionA','optionB','optionC','optionD']
-        let resourcesObject = ['resourceA','resourceB','resourceC','resourceD']
-       
+        let questionObject = ['questions', 'images', 'optionA', 'optionB', 'optionC', 'optionD']
+        let resourcesObject = ['resourceA', 'images', 'resourceB', 'resourceC', 'resourceD']
+
 
 
         return (
             <div>
                 <form>
                     <label htmlFor='subject'>Select Subject </label>
-                    <select required name='subject' id='subject' onChange={this.handleFormChange} >         
+                    <select required name='subject' id='subject' onChange={this.handleFormChange} >
                         {subjectLists}
                     </select>
                     <label htmlFor='intent'>Is this a question or a resource</label>
@@ -58,13 +58,13 @@ export default class InformationForm extends Component {
                         <option value='questions'>Questions</option>
                         <option value='resources'>Resources</option>
                     </select>
-                    <hr className='my-4'/>
+                    <hr className='my-4' />
                     <label htmlFor='topic'>Topic</label>
-                    <input required id='topic' type='text' ref={a => this.topic = a}/>
-                        <Form 
-                            resourceObject={intent === 'questions' ? questionObject : resourcesObject}
-                            createForm={this.createNewInfo}
-                        />
+                    <input required id='topic' type='text' ref={a => this.topic = a} />
+                    <Form
+                        resourceObject={intent === 'questions' ? questionObject : resourcesObject}
+                        createForm={this.createNewInfo}
+                    />
                 </form>
             </div>
         )

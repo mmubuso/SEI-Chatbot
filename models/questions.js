@@ -12,6 +12,10 @@ const QuestionsModelSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  images: {
+    type: String,
+    default: null
+  },
   optionA: {
     type: String,
     required: true
