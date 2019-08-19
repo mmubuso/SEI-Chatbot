@@ -28,7 +28,7 @@ const QuestionsModelSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  optionD: {
+  answer: {
     type: String,
     required: true
   },
