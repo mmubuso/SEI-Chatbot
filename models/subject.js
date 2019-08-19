@@ -44,11 +44,17 @@ function deleteSubject(subjectId) {
   return SubjectCollection.findByIdAndDelete(subjectId)
 }
 
+// delete all subjects
+function deleteAllSubjects(){
+  return SubjectCollection.deleteMany()
+}
+
 // Export all functions
 module.exports = {
   getAllSubjects,
   getSingleSubject,
   createSubject,
   updateSubject,
-  deleteSubject
+  deleteSubject,
+  deleteAllSubjects
 }

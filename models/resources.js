@@ -69,7 +69,7 @@ function deleteResource(resourceId) {
 
 //delete all
 function deleteAllResources() {
-  return ResourceCollection.deleteMany(resourceId)
+  return ResourceCollection.deleteMany()
 }
 
 // Export all functions
