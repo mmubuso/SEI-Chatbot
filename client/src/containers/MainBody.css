@@ -1,3 +1,7 @@
 .MainBody {
     height: 85vh;
 }
+
+#topic-display{
+    color: whitesmoke;
+}
