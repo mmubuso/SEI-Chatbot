@@ -179,7 +179,7 @@ export default class Meridio extends Component {
                             onChange={this.handleUserInput}
                             className='form-control col-md-12' />
                         <img
-                            onSubmit={(evt) => this.handleOnSubmit(evt)}
+                            onClick={(evt) => this.handleOnSubmit(evt)}
                             className='send'
                             src={SendImage} />
 
