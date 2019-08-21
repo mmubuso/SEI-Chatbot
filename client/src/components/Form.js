@@ -17,10 +17,9 @@ export default class Form extends Component {
         let formList = resourceObject.map(resource => {
             return (
                 <div 
-                className='my-1 col-12'
                 key={resource} >
                     <input
-                        className='form-control'
+                        className='form-control my-1 col-12'
                         placeholder={resource}
                         required={true}
                         type='text'
@@ -35,7 +34,10 @@ export default class Form extends Component {
             <div onSubmit={(evt) => createForm(evt, this.state)}>
                 
                 {formList}
-                <button type='submit' onClick={(evt) => createForm(evt, this.state)}>SUBMIT</button>
+                <button 
+                className='btn btn-success'
+                type='submit' 
+                onClick={(evt) => createForm(evt, this.state)}>SUBMIT</button>
             </div>
         )
     }

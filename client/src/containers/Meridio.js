@@ -4,7 +4,8 @@ import './Meridio.css';
 import axios from 'axios';
 import Messages from '../components/Messages';
 import Subject from '../components/Subject';
-import SendImage from '../lib/images/send.svg'
+import SendImage from '../lib/images/send.svg';
+import greetingReply from '../lib/meridiosReplies.js';
 
 export default class Meridio extends Component {
 
@@ -18,8 +19,10 @@ export default class Meridio extends Component {
 
     //Run interaction between user and meridio
     main = async () => {
-        console.log(this.valdateWitApiIntent() + ' ' + this.valdateWitApiTopic())
-
+        if(this.validateWitApiGreeting()){
+            let greetings = [...greetingReply.greetingReply]
+            this.pushUserInputToMessages(`Meridio: ${greetings[Math.floor(Math.random() * greetings.length)]}`)
+        }
         if (this.valdateWitApiIntent() && this.valdateWitApiTopic()) {
             //captured from valid intent and valid topic
             //we get all the valid information with the users intent
@@ -33,7 +36,7 @@ export default class Meridio extends Component {
                 ${this.state.entities.topic[0].value}', 
             if you find that information remember to come back here and create that information`)
                 :
-                this.pushUserInputToMessages(`Meridio: Getting all the info I have on ${this.state.entities.topic[0].value} right away!d`)
+                setTimeout(this.pushUserInputToMessages(`Meridio: Getting all the info I have on ${this.state.entities.topic[0].value} right away!d`),2000)
         }
 
         // If the input has an intent but does not have a valid topic
@@ -82,10 +85,12 @@ export default class Meridio extends Component {
 
     // Validate to make sure entities has topic
     valdateWitApiTopic = () => {
-        return this.state.entities.topic ? true : false
+        return this.state.entities.topic ? true : false;
     }
 
-
+    validateWitApiGreeting = () => {
+        return this.state.entities.greetings ? true : false;
+    }
     // Turn on/off calls to wit api
     toggleMeridio = () => {
         this.setState((state) => {

@@ -49,8 +49,8 @@ export default class InformationForm extends Component {
 
 
         return (
-            <div>
-                <form>
+            <div className='informationForm'>
+                <form className='container'>
                     <h2>Create Information</h2>
                     <label
                         className='lead'

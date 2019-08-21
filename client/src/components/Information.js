@@ -25,7 +25,7 @@ export default class Information extends Component {
 
         return (
             <Slide top cascade>
-                <div className='Information'>
+                <div className='Information list-group-item mb-2'>
 
                     <h1 className='lead'>{infoTitle}</h1>
                     {
@@ -61,7 +61,6 @@ export default class Information extends Component {
                         className='deleteButton'
                         onClick={() => this.props.deleteMethod(subjectId, category, itemId)}
                         src={Delete} />
-                    <hr className="my-4"></hr>
 
                 </div>
             </Slide>
