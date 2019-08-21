@@ -153,7 +153,7 @@ export default class Meridio extends Component {
         let { subjectMethod, subjects, singleObjectInfo } = this.props
 
         return (
-            <div id="scroller" className='col-md-5 col-sm-12 Meridio'>
+            <div id="scroller" className='col-md-4 col-sm-12 Meridio'>
                 <Jumbotron>
                     {
                         messageFlag ?

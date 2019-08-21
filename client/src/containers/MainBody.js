@@ -74,7 +74,7 @@ export default class MainBody extends Component {
 
         return (
             <Container>
-                <div className='row align-items-center MainBody' >
+                <div className='row justify-content-between MainBody' >
                 <h1 id='topic-display' className='display-2 col-md-12'>{subject.name}</h1>
                     <Media
                         information={information}
