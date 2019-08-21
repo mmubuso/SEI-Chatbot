@@ -1,5 +1,4 @@
-# mern-template-project
-
+# SEI-CHATBOT
 ### Contributions
 questions came from lydia hallies github 
 https://github.com/lydiahallie
