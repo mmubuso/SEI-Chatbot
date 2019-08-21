@@ -19,6 +19,16 @@
     overflow-x: hidden;
 }
 
+.buttonContainer {
+    position: relative;
+}
+
+.mediaButton{
+    position: absolute;
+    height: 3em;
+    left: 1%;
+}
+
 /* Responsive Css  */
 @media (max-width: 768px) { 
     .Media {
@@ -28,6 +38,10 @@
     }
     .Media .jumbotron{
         height: 50vh;
+    }
+
+    .mediaButton{
+        height: 2em;
     }
  }
 

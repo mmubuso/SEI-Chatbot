@@ -5,3 +5,8 @@
 .Information img{
     max-height: 150px;
 }
+
+.deleteButton {
+    height: 1.2em;
+    margin-left: 1em;
+}

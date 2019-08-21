@@ -2,12 +2,26 @@
     height: 100%;
     background-color: white;
     overflow-y: auto;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.subjectNames{
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.Subjects button,.subject{
+    display: inline-block;
 }
 
 
-.Subjects button,.subject{
-    height: 25px;
-    display: inline-block;
+.subjectForm{
+    text-align: left;
+}
+
+.returnArrow{
+    height: 2em;
 }
 
 @media (max-width: 768px) {
@@ -16,3 +30,4 @@
         padding-right: 0 !important;
     }
 }
+

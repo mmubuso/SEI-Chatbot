@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import axios from 'axios';
 
 export default class SubjectForm extends Component {
 
@@ -39,7 +39,7 @@ export default class SubjectForm extends Component {
     //Force state to update
     updateState = () => {
         let num = this.state.count + 1
-        this.setState({count : num})
+        this.setState({ count: num })
     }
 
     // toggle form
@@ -62,21 +62,29 @@ export default class SubjectForm extends Component {
             )
         })
         return (
-            <div>
+            <div className='subjectForm'>
 
                 {
 
                     this.state.toggleEditCreateForm ?
 
-                        <div>
-                            <h1>Create A Subject</h1>
-                            <label htmlFor='subject'>Subject Name</label>
-                            <input ref={ev => this.name = ev} name='name'></input>
+                        <div className='row my-4'>
+                            <label className='col-12'>Create Subject</label>
+                            <div className='col-12'>
+                                <input
+                                    className='form-control'
+                                    placeholder='Subject Name'
+                                    ref={ev => this.name = ev}
+                                    name='name'></input>
+                            </div>
                         </div >
                         :
-                        <div>
-                            <label htmlFor='subject'> Edit A Subject </label>
+                        <div className='my-4 row'>
+                            <label
+                                className='col-12'
+                                htmlFor='subject'> Edit Subject Name</label>
                             <select
+                                className='form-control'
                                 required
                                 name='subject'
                                 id='subject'
@@ -85,26 +93,32 @@ export default class SubjectForm extends Component {
                                 <option value={0}>Select Subject</option>
                                 {subjectOptions}
                             </select>
-                            <input ref={a => this.newName = a} type='text' placeholder='New Name For Subject' />
+                            <input 
+                            className='col-12'
+                            ref={a => this.newName = a} 
+                            type='text' 
+                            placeholder='New Name For Subject' />
                         </div>
                 }
+
                 <button
-                    onClick={this.toggleForm}> Toggle
-                </button>
+                    className="col-12 btn btn-outline-secondary"
+                    onClick={this.toggleForm}> {
+                        this.state.toggleEditCreateForm ?
+                        'Switch to Update Form'
+                        :
+                        'Switch to Create Form'
+                        }
+                    </button>
                 <button
+                    className='col-12 btn btn-success'
                     onClick={
                         this.state.toggleEditCreateForm ?
                             this.createSubject
                             :
                             this.updateSubject
                     }>
-                    {
-                        this.state.toggleEditCreateForm
-                            ?
-                            'Create A Subject'
-                            :
-                            'Edit Subject'
-                    }
+                    Submit
                 </button>
             </div>
         )

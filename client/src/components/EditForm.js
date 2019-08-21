@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import './EditForm.css'
 
 export default class EditForm extends Component {
 
@@ -48,7 +49,13 @@ export default class EditForm extends Component {
                 return (
                     <div key={key}>
                         <label htmlFor={key}>{key}</label>
-                        <input name={key} onChange={this.handleChange} id={key} type='text' value={this.state.object[key]} />
+                        <input
+                            className='form-control'
+                            name={key}
+                            onChange={this.handleChange}
+                            id={key}
+                            type='text'
+                            value={this.state.object[key]} />
                     </div>
                 )
             }
@@ -56,17 +63,21 @@ export default class EditForm extends Component {
         })
 
         return (
-            <div>
+            <div className='editForm'>
                 {
                     this.state.redirect
                         ?
                         <Redirect to='/' />
                         :
-                        <div>
+                        <div className='container'>
                             <h1>Edit Item</h1>
                             {newItems}
-                            <button onClick={this.updateItem}>Submit</button>
-                            <button onClick={ () => this.setState({ redirect: true })}>Cancel</button>
+                            <button
+                                className='btn btn-success mr-4 my-4'
+                                onClick={this.updateItem}>Submit</button>
+                            <button
+                                className='btn btn-danger'
+                                onClick={() => this.setState({ redirect: true })}>Cancel</button>
                         </div>
                 }
             </div>

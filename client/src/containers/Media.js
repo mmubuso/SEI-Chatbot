@@ -3,6 +3,9 @@ import './Media.css'
 import { Jumbotron } from 'reactstrap';
 import Information from '../components/Information';
 import InformationForm from '../components/InformationForm';
+import Return from '../lib/images/back.svg';
+import Create from '../lib/images/plus.svg';
+
 
 
 // Media is the compoenent that will hold all the questions and information
@@ -48,14 +51,18 @@ export default class Media extends Component {
                                 ?
                                 <InformationForm
                                     subjects={subjects}
-                                    singleSubject={singleSubject} 
-                                    toggleShowSingleMedia={toggleShowSingleMedia}/>
+                                    singleSubject={singleSubject}
+                                    toggleShowSingleMedia={toggleShowSingleMedia} />
                                 :
                                 informationList
-
                         }
                     </div>
-                    <button onClick={toggleShowSingleMedia}>{showSingleMedia ? 'Go Back' : 'Create Topic'}</button>
+                    <div className='buttonContainer'>
+                        <img
+                            className='mediaButton'
+                            onClick={toggleShowSingleMedia}
+                            src={showSingleMedia ? Return : Create} />
+                    </div>
                 </Jumbotron>
             </div>
         )

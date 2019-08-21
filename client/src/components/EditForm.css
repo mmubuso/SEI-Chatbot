@@ -1,0 +1,5 @@
+.editForm label{
+    text-align: left;
+    display: block;
+    text-transform: capitalize;
+}

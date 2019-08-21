@@ -36,6 +36,7 @@ export default class InformationForm extends Component {
         let subjectLists = subjects.map(subject => {
             return (
                 <option
+                    className='form-control'
                     key={subject._id}
                     value={subject._id}>{subject.name}
                 </option>
@@ -50,18 +51,42 @@ export default class InformationForm extends Component {
         return (
             <div>
                 <form>
-                    <label htmlFor='subject'>Select Subject </label>
-                    <select required name='subject' id='subject' onChange={this.handleFormChange} >
+                    <h2>Create Information</h2>
+                    <label
+                        className='lead'
+                        htmlFor='subject'>Select Subject </label>
+                    <select
+                        className='form-control'
+                        required={true}
+                        name='subject'
+                        id='subject'
+                        onChange={this.handleFormChange} >
                         {subjectLists}
                     </select>
-                    <label htmlFor='intent'>Is this a question or a resource</label>
-                    <select required name='intent' id='intent' onChange={this.handleFormChange} value={intent}>
-                        <option value='questions'>Questions</option>
-                        <option value='resources'>Resources</option>
+                    <label
+                        className='lead'
+                        htmlFor='intent'>Select Category</label>
+                    <select
+                        className='form-control'
+                        required={true}
+                        name='intent'
+                        id='intent'
+                        onChange={this.handleFormChange}
+                        value={intent}>
+                        <option
+                            className='form-control'
+                            value='questions'>Questions</option>
+                        <option
+                            className='form-control'
+                            value='resources'>Resources</option>
                     </select>
-                    <hr className='my-4' />
-                    <label htmlFor='topic'>Topic</label>
-                    <input required id='topic' type='text' ref={a => this.topic = a} />
+                    <input
+                        className='form-control my-1 col-12'
+                        required={true}
+                        placeholder='Enter Topic'
+                        id='topic'
+                        type='text'
+                        ref={a => this.topic = a} />
                     <Form
                         resourceObject={intent === 'questions' ? questionObject : resourcesObject}
                         createForm={this.createNewInfo}

@@ -2,8 +2,20 @@ import React, { Component } from 'react';
 import './Information.css';
 import { Link } from 'react-router-dom'
 import Slide from 'react-reveal/Slide';
+import Delete from '../lib/images/close.svg';
 
 export default class Information extends Component {
+
+    state = {
+        showAnswer: false
+    }
+
+    //toggle answer
+    toggleAnswer = () => {
+        this.setState(state => {
+            return { showAnswer: !state.showAnswer }
+        })
+    }
 
     render() {
 
@@ -30,15 +42,25 @@ export default class Information extends Component {
                     <li>{info3 ? info3 : 'N/A'}</li>
                     {category === 'questions'
                         ?
-                        <li>
-                            <strong>{info4 ? info4 : 'N/A'}
+                        <li
+                            onClick={this.toggleAnswer}
+                            className='answer'>
+                            <strong>{
+                                this.state.showAnswer
+                                    ?
+                                    info4
+                                    :
+                                    'Click For Answer'
+                            }
                             </strong> </li>
                         :
                         <li>{info4 ? info4 : 'N/A'} </li>
                     }
                     <Link to={`/resource/${itemId}/${category}/${subjectId}`}>Edit Info</Link>
-                    <button
-                        onClick={() => this.props.deleteMethod(subjectId, category, itemId)}>Delete</button>
+                    <img
+                        className='deleteButton'
+                        onClick={() => this.props.deleteMethod(subjectId, category, itemId)}
+                        src={Delete} />
                     <hr className="my-4"></hr>
 
                 </div>

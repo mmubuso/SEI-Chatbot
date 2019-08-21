@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Jumbotron } from 'reactstrap';
-import './Meridio.css'
-import axios from 'axios'
+import './Meridio.css';
+import axios from 'axios';
 import Messages from '../components/Messages';
 import Subject from '../components/Subject';
+import SendImage from '../lib/images/send.svg'
 
 export default class Meridio extends Component {
 
@@ -32,7 +33,7 @@ export default class Meridio extends Component {
                 ${this.state.entities.topic[0].value}', 
             if you find that information remember to come back here and create that information`)
                 :
-                this.pushUserInputToMessages('Meridio: Generating requested information')
+                this.pushUserInputToMessages(`Meridio: Getting all the info I have on ${this.state.entities.topic[0].value} right away!d`)
         }
 
         // If the input has an intent but does not have a valid topic
@@ -68,7 +69,7 @@ export default class Meridio extends Component {
             method: 'GET',
             url: `https://api.wit.ai/message?v=20190818&q=${userInput}`,
             headers: {
-                Authorization: `Bearer `,
+                Authorization: `Bearer ZXAN76JJJTVVS2Z6XLWVFBQKPHIAQ5E2`,
             }
         })
         this.setState({ entities: response.data.entities })
@@ -105,7 +106,7 @@ export default class Meridio extends Component {
     handleOnSubmit = async (event) => {
         event.preventDefault()
         await this.callWitApi()
-        if(this.state.userInput !== ''){
+        if (this.state.userInput !== '') {
             this.pushUserInputToMessages(`Human: ${this.state.userInput}`)
             this.main()
         }
@@ -134,6 +135,10 @@ export default class Meridio extends Component {
         data typs and control flow. 
         Try asking me, "I want to learn about primitive data types"`)
     }
+
+    componentDidUpdate() {
+
+    }
     render() {
 
         //destructure state
@@ -143,11 +148,12 @@ export default class Meridio extends Component {
         let { subjectMethod, subjects, singleObjectInfo } = this.props
 
         return (
-            <div className='col-md-5 col-sm-12 Meridio'>
+            <div id="scroller" className='col-md-5 col-sm-12 Meridio'>
                 <Jumbotron>
                     {
                         messageFlag ?
                             <Messages
+                                ref={a => this.messages = a}
                                 messages={messages}
                                 toggle={this.togggleMessageScreen}
                             />
@@ -160,17 +166,25 @@ export default class Meridio extends Component {
                             />
                     }
 
-                    <form onSubmit={(evt) => this.handleOnSubmit(evt)} className='row'>
-                        <div className='col-xs-12'>
-                            <input type='text' value={userInput} onChange={this.handleUserInput} />
-                            <input type='submit' onSubmit={(evt) => this.handleOnSubmit(evt)} />
-                        </div>
+                    <form onSubmit={(evt) => this.handleOnSubmit(evt)} className='messageForm col-xs-12 row'>
+
+                        <input
+                            type='text'
+                            value={userInput}
+                            onChange={this.handleUserInput}
+                            className='form-control col-md-12' />
+                        <img
+                            onSubmit={(evt) => this.handleOnSubmit(evt)}
+                            className='send'
+                            src={SendImage} />
+
                     </form>
                 </Jumbotron>
                 {
                     messageFlag ?
                         <div className='col-12'>
                             <button
+                                className='button btn btn-outline-secondary'
                                 onClick={this.togggleMessageScreen}>Change Subject</button>
                         </div>
                         :

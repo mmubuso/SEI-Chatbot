@@ -37,16 +37,15 @@ export default class Subject extends Component {
             return (
                 <div
                     key={subject._id}
-                    className='col-sm-12'>
+                    className='subjectNames col-12'>
                     <div
                         className='subject'
                         onClick={() => this.runTwoMethods(subject._id)}>
                         {subject.name}
                     </div>
-                    <button onClick={() => this.deleteSubject((subject._id))}> Delete</button>
-
+                    <span onClick={() => this.deleteSubject((subject._id))}> {String.fromCodePoint(0x274C)}</span>
+                    <hr className='my-2'/>
                 </div>
-
             )
         })
 
@@ -66,6 +65,7 @@ export default class Subject extends Component {
                         subjectList
                 }
                 <button
+                    className='button btn btn-outline-secondary'
                     onClick={this.toggleForm}>Change Subjects
                 </button>
             </div>
